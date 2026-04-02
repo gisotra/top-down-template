@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqpx4m6trcwxf"
-path="res://.godot/imported/grass_tileset.png-85efd1d66eeaae21b2f9234b1f7a375b.ctex"
+uid="uid://c34p6783mto4p"
+path="res://.godot/imported/herosword.png-b3b80d3750953fc6c6348f786ecd9f38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/grass_tileset.png"
-dest_files=["res://.godot/imported/grass_tileset.png-85efd1d66eeaae21b2f9234b1f7a375b.ctex"]
+source_file="res://assets/player/sword/herosword.png"
+dest_files=["res://.godot/imported/herosword.png-b3b80d3750953fc6c6348f786ecd9f38.ctex"]
 
 [params]
 
