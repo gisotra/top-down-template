@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d34lky4l8cch2"]
+
+[ext_resource type="Texture2D" uid="uid://cshj31qxrbcwi" path="res://assets/entities/byson_npc.png" id="1_ufiyb"]
+[ext_resource type="Script" uid="uid://djkbqto4qem24" path="res://_scripts/npcs/byson_npc.gd" id="2_2dm6d"]
+[ext_resource type="Script" uid="uid://btn1i4h8wmdkx" path="res://_scripts/core_mechanics/interaction_area.gd" id="2_y35fn"]
+[ext_resource type="Texture2D" uid="uid://dw202hb0o4fk8" path="res://assets/ui/press_]key.png" id="3_hw5xh"]
+[ext_resource type="Texture2D" uid="uid://c8tnfoxpmkhow" path="res://assets/ui/speech_bubble.png" id="4_77wl0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_18mce"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ufiyb"]
+radius = 37.0
+
+[node name="byson_npc" type="Sprite2D" unique_id=1289247405]
+texture = ExtResource("1_ufiyb")
+offset = Vector2(0, -10)
+script = ExtResource("2_2dm6d")
+
+[node name="Hitbox" type="StaticBody2D" parent="." unique_id=980843676]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=24037952]
+position = Vector2(0, 5)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_18mce")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=883460583]
+script = ExtResource("2_y35fn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=917830469]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_ufiyb")
+debug_color = Color(0.9490196, 0, 0.57254905, 0)
+
+[node name="hoverButton" type="Sprite2D" parent="InteractionArea" unique_id=1496804182]
+position = Vector2(0, -36)
+texture = ExtResource("3_hw5xh")
+
+[node name="SpeechBubble" type="Sprite2D" parent="." unique_id=215094992]
+visible = false
+position = Vector2(29, -38)
+texture = ExtResource("4_77wl0")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

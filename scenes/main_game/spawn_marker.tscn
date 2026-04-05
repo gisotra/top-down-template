@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://ct32n7yde3bpx"]
+
+[ext_resource type="Texture2D" uid="uid://3o3jiukv8hp8" path="res://assets/objects/ui/marker.png" id="1_hohuq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yfwe"]
+atlas = ExtResource("1_hohuq")
+region = Rect2(0, 0, 32, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6r1u"]
+atlas = ExtResource("1_hohuq")
+region = Rect2(32, 0, 32, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gv88k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yfwe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6r1u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_hohuq"]
+length = 0.93333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m6r1u"]
+length = 0.43333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.17, 0.40000004),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 0.517), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3yfwe"]
+resource_name = "spawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.46666667),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 0.8), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m6r1u"]
+_data = {
+&"RESET": SubResource("Animation_hohuq"),
+&"disappear": SubResource("Animation_m6r1u"),
+&"spawn": SubResource("Animation_3yfwe")
+}
+
+[node name="spawn_marker" type="Node2D" unique_id=1355141703]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2029583340]
+sprite_frames = SubResource("SpriteFrames_gv88k")
+frame_progress = 0.9259524
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1624593288]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=591096275]
+libraries/ = SubResource("AnimationLibrary_m6r1u")

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d0ofu8a5cejxt"]
+
+[ext_resource type="Script" uid="uid://doktua1gs8ihk" path="res://components/health_component.gd" id="1_fvuvf"]
+[ext_resource type="PackedScene" uid="uid://blj1ptcewm08y" path="res://components/health_bar.tscn" id="2_ghre4"]
+
+[node name="HealthComponent" type="Node2D" unique_id=1351455396]
+script = ExtResource("1_fvuvf")
+
+[node name="HealthBar" parent="." unique_id=496066527 instance=ExtResource("2_ghre4")]
+
+[connection signal="on_take_damage" from="." to="HealthBar" method="_on_health_component_on_take_damage"]

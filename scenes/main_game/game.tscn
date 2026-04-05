@@ -1,43 +1,22 @@
 [gd_scene format=4 uid="uid://cgxajkcg7qdwf"]
 
-[ext_resource type="Shader" uid="uid://d3xtc60n5mqem" path="res://shaders/repeatImage.gdshader" id="1_rd7ru"]
+[ext_resource type="Script" uid="uid://bm3280qhody20" path="res://_scripts/core_mechanics/hud_de_vida.gd" id="1_kk6m7"]
+[ext_resource type="Texture2D" uid="uid://bh2bnlpllqg53" path="res://assets/ui/player_visual_hud.png" id="1_ls4rf"]
+[ext_resource type="Texture2D" uid="uid://cuaie4lnjmq5a" path="res://assets/ui/player_health.png" id="1_r67kh"]
 [ext_resource type="Texture2D" uid="uid://d017peoorb05x" path="res://assets/backgroundRepeated.png" id="2_gkivd"]
-[ext_resource type="Script" uid="uid://bn32eh1qnwcr4" path="res://_scripts/camera/game_camera.gd" id="3_dkxss"]
 [ext_resource type="Texture2D" uid="uid://dqpx4m6trcwxf" path="res://assets/tilesets/grass_tileset.png" id="3_gkivd"]
+[ext_resource type="Texture2D" uid="uid://cqdiv5bavdtbo" path="res://assets/tilesets/chris_grass.png" id="4_sxige"]
 [ext_resource type="PackedScene" uid="uid://nhyd35a4bf7v" path="res://scenes/player/player.tscn" id="4_ydfai"]
+[ext_resource type="PackedScene" uid="uid://lgaafqy2iuhm" path="res://scenes/main_game/game_camera.tscn" id="5_kk6m7"]
+[ext_resource type="Texture2D" uid="uid://bp1ju7b6b0v1w" path="res://assets/tilesets/chris_grass_2.png" id="6_0221t"]
 [ext_resource type="Texture2D" uid="uid://b0xgtlo18si1y" path="res://assets/objects/obstacles/tree.png" id="6_xvjbs"]
 [ext_resource type="PackedScene" uid="uid://kb83fchk3yqp" path="res://scenes/enemy.tscn" id="7_dcd45"]
+[ext_resource type="PackedScene" uid="uid://d34lky4l8cch2" path="res://scenes/entitites/byson_npc.tscn" id="8_18mce"]
+[ext_resource type="Texture2D" uid="uid://boqpmcrxfhmpo" path="res://assets/ui/dyalogue_bubble.png" id="13_j630m"]
+[ext_resource type="Script" uid="uid://cqtfbhfls6rcv" path="res://scenes/main_game/caixa_de_texto.gd" id="13_kk6m7"]
+[ext_resource type="PackedScene" uid="uid://dpyxedmciggl4" path="res://scenes/main_game/spawn_manager.tscn" id="13_oajyg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rd7ru"]
-shader = ExtResource("1_rd7ru")
-shader_parameter/tiling = Vector2(1, 1)
-shader_parameter/offset = Vector2(0, 1)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkxss"]
-texture = ExtResource("3_gkivd")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -8, -8, -8, -8, 16, -16, 16)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -8, -16, -8)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, 8, 16, 8, -8, -16, -8)
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -8, -16, -8, 16, -16, 16)
-1:1/0 = 0
-2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8.163269, -16, 16, -16, 16, 16, 8, 16)
-0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, -16, 16, -16, -16, -8, -16, -8, 0, 16, 0)
-1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, -16, 16, -16, 0, 16, 0)
-2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8.163269, -16, 16, -16, 16, 16, -16, 16, -16, 0, 8, 0)
-
-[sub_resource type="TileSet" id="TileSet_dkxss"]
-tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_dkxss")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcd45"]
 atlas = ExtResource("6_xvjbs")
@@ -219,34 +198,222 @@ animations = [{
 radius = 5.0
 height = 26.0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0221t"]
+texture = ExtResource("4_sxige")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dtgc6"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8l37b"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_rtce5"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yha7y"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cnays"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_egoq4"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gy1i3"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cjsd6"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_1wg7v"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dkxss"]
+texture = ExtResource("3_gkivd")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -8, -8, -8, -8, 16, -16, 16)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dtgc6")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -8, -16, -8)
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_yha7y")
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, 8, 16, 8, -8, -16, -8)
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_gy1i3")
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -8, -16, -8, 16, -16, 16)
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_8l37b")
+1:1/0 = 0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_cnays")
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8.163269, -16, 16, -16, 16, 16, 8, 16)
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_cjsd6")
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, -16, 16, -16, -16, -8, -16, -8, 0, 16, 0)
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_rtce5")
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, -16, 16, -16, 0, 16, 0)
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_egoq4")
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8.163269, -16, 16, -16, 16, 16, -16, 16, -16, 0, 8, 0)
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1wg7v")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ls4rf"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_18mce"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_j630m"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_07qgt"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kk6m7"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_oajyg"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xm83q"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4p50t"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bx34l"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r67kh"]
+texture = ExtResource("6_0221t")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ls4rf")
+1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_07qgt")
+2:0/0 = 0
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_xm83q")
+0:1/0 = 0
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_18mce")
+1:1/0 = 0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kk6m7")
+2:1/0 = 0
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4p50t")
+0:2/0 = 0
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_j630m")
+1:2/0 = 0
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_oajyg")
+2:2/0 = 0
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_bx34l")
+
+[sub_resource type="TileSet" id="TileSet_dkxss"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
+sources/1 = SubResource("TileSetAtlasSource_dkxss")
+sources/0 = SubResource("TileSetAtlasSource_0221t")
+sources/2 = SubResource("TileSetAtlasSource_r67kh")
+
 [node name="game" type="Node2D" unique_id=12126017]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=841755515]
+[node name="ui" type="CanvasLayer" parent="." unique_id=418543875]
+layer = 2
+
+[node name="hud_de_vida" type="Node2D" parent="ui" unique_id=466494446 node_paths=PackedStringArray("player")]
+script = ExtResource("1_kk6m7")
+player = NodePath("../../GameObjects/Player")
+textura_do_coracao = ExtResource("1_r67kh")
+
+[node name="player_visual" type="Sprite2D" parent="ui/hud_de_vida" unique_id=907576802]
+position = Vector2(22, 21)
+texture = ExtResource("1_ls4rf")
+
+[node name="container_pos" type="Marker2D" parent="ui/hud_de_vida" unique_id=1574943363]
+position = Vector2(53, 21)
+
+[node name="cenario" type="CanvasLayer" parent="." unique_id=841755515]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=1069490971]
+[node name="TextureRect" type="TextureRect" parent="cenario" unique_id=1069490971]
 material = SubResource("ShaderMaterial_rd7ru")
 offset_right = 320.0
 offset_bottom = 179.0
 texture = ExtResource("2_gkivd")
 stretch_mode = 1
 
-[node name="GameCamera" type="Camera2D" parent="." unique_id=1043016311 node_paths=PackedStringArray("player_reference")]
-process_callback = 0
-position_smoothing_enabled = true
-script = ExtResource("3_dkxss")
+[node name="GameCamera" parent="." unique_id=1578576872 node_paths=PackedStringArray("player_reference") groups=["camera"] instance=ExtResource("5_kk6m7")]
 player_reference = NodePath("../GameObjects/Player")
-
-[node name="CENARIO" type="Node2D" parent="." unique_id=1721209159]
-
-[node name="grama" type="TileMapLayer" parent="CENARIO" unique_id=946110561]
-tile_map_data = PackedByteArray("AAD5/wEAAQABAAEAAAD5/wAAAQABAAEAAAD5////AQABAAEAAAD5//7/AQABAAEAAAD6//7/AQABAAEAAAD7//7/AQABAAEAAAD8//7/AQABAAEAAAD9//7/AQABAAEAAAD+//7/AQABAAEAAAD///7/AQABAAEAAAAAAP7/AQABAAEAAAABAP7/AQABAAEAAAACAP7/AQABAAEAAAADAP7/AQABAAEAAAAEAP7/AQABAAEAAAAFAP7/AQABAAEAAAAFAP//AQABAAEAAAAFAAAAAQABAAEAAAAFAAEAAQABAAEAAAAGAAEAAQACAAEAAAAEAAEAAQABAAEAAAADAAEAAQABAAEAAAACAAEAAQABAAEAAAABAAEAAQABAAEAAAAAAAEAAQABAAEAAAD//wEAAQABAAEAAAD+/wEAAQABAAEAAAD9/wEAAQABAAEAAAD8/wEAAQABAAEAAAD7/wEAAQABAAEAAAD6/wEAAQABAAEAAAD6/wAAAQABAAEAAAD6////AQABAAEAAAD7////AQABAAEAAAD7/wAAAQABAAEAAAD8////AQABAAEAAAD8/wAAAQABAAEAAAD9////AQABAAEAAAD9/wAAAQABAAEAAAD+/wAAAQABAAEAAAD+////AQABAAEAAAD//wAAAQABAAEAAAD/////AQABAAEAAAAAAP//AQABAAEAAAAAAAAAAQABAAEAAAABAP//AQABAAEAAAACAAAAAQABAAEAAAACAP//AQABAAEAAAADAP//AQABAAEAAAADAAAAAQABAAEAAAAEAP//AQABAAEAAAAEAAAAAQABAAEAAAAGAP//AQACAAEAAAAGAAAAAQACAAEAAAAGAP7/AQACAAEAAAABAAAAAQABAAEAAAD4/wEAAQAAAAEAAAD4/wAAAQAAAAEAAAD4////AQAAAAEAAAD4//7/AQAAAAEAAAAGAAIAAQACAAIAAAD4/wIAAQAAAAIAAAD5/wIAAQABAAIAAAD6/wIAAQABAAIAAAD7/wIAAQABAAIAAAD8/wIAAQABAAIAAAD9/wIAAQABAAIAAAD+/wIAAQABAAIAAAD//wIAAQABAAIAAAAAAAIAAQABAAIAAAABAAIAAQABAAIAAAACAAIAAQABAAIAAAADAAIAAQABAAIAAAAEAAIAAQABAAIAAAAFAAIAAQABAAIAAAD4//3/AQAAAAAAAAD5//3/AQABAAAAAAD6//3/AQABAAAAAAD7//3/AQABAAAAAAD8//3/AQABAAAAAAD9//3/AQABAAAAAAD+//3/AQABAAAAAAD///3/AQABAAAAAAAAAP3/AQABAAAAAAABAP3/AQABAAAAAAACAP3/AQABAAAAAAADAP3/AQABAAAAAAAEAP3/AQABAAAAAAAFAP3/AQABAAAAAAAGAP3/AQACAAAAAAA=")
-tile_set = SubResource("TileSet_dkxss")
 
 [node name="GameObjects" type="Node2D" parent="." unique_id=721829470]
 y_sort_enabled = true
 
-[node name="Player" parent="GameObjects" unique_id=278869032 instance=ExtResource("4_ydfai")]
+[node name="Player" parent="GameObjects" unique_id=278869032 groups=["playergroup"] instance=ExtResource("4_ydfai")]
+HealthPoints = 5
 
 [node name="Tree_1" type="AnimatedSprite2D" parent="GameObjects" unique_id=1099831630]
 position = Vector2(-188, -50)
@@ -262,7 +429,7 @@ rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_u5vuv")
 
 [node name="Tree_2" type="AnimatedSprite2D" parent="GameObjects" unique_id=1534219298]
-position = Vector2(-94, 61)
+position = Vector2(-248, 66)
 sprite_frames = SubResource("SpriteFrames_o1d4s")
 autoplay = "default"
 frame_progress = 0.40336302
@@ -275,7 +442,7 @@ rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_u5vuv")
 
 [node name="Tree_3" type="AnimatedSprite2D" parent="GameObjects" unique_id=1328097357]
-position = Vector2(158, -20)
+position = Vector2(108, -16)
 sprite_frames = SubResource("SpriteFrames_o1d4s")
 autoplay = "default"
 frame_progress = 0.40336302
@@ -287,5 +454,51 @@ offset = Vector2(0, -37)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_u5vuv")
 
-[node name="Enemy" parent="GameObjects" unique_id=296082514 instance=ExtResource("7_dcd45")]
-position = Vector2(89, 28)
+[node name="byson_npc" parent="GameObjects" unique_id=1289247405 instance=ExtResource("8_18mce")]
+position = Vector2(-124, -15)
+texto_de_dialogo = "Olá viajante! É um ótimo dia para aprender a codar!z"
+
+[node name="CENARIO" type="Node2D" parent="." unique_id=1721209159]
+z_index = -1
+
+[node name="grama" type="TileMapLayer" parent="CENARIO" unique_id=946110561]
+tile_map_data = PackedByteArray("AAD8//7/AQABAAEAAAD9//7/AQABAAEAAAD+//7/AQABAAEAAAD///7/AQABAAEAAAAAAP7/AQABAAEAAAABAP7/AQABAAEAAAACAP7/AQABAAEAAAADAP7/AQABAAEAAAAEAP7/AQABAAEAAAAFAP7/AQABAAEAAAAFAP//AQABAAEAAAAFAAAAAQABAAEAAAAFAAEAAQABAAEAAAAGAAEAAQACAAEAAAAEAAEAAQABAAEAAAADAAEAAQABAAEAAAACAAEAAQABAAEAAAABAAEAAQABAAEAAAAAAAEAAQABAAEAAAD//wEAAQABAAEAAAD+/wEAAQABAAEAAAD9/wEAAQABAAEAAAD8/wEAAQABAAEAAAD8////AQABAAEAAAD8/wAAAQABAAEAAAD9////AQABAAEAAAD9/wAAAQABAAEAAAD+/wAAAQABAAEAAAD+////AQABAAEAAAD//wAAAQABAAEAAAD/////AQABAAEAAAAAAP//AQABAAEAAAAAAAAAAQABAAEAAAABAP//AQABAAEAAAACAAAAAQABAAEAAAACAP//AQABAAEAAAADAP//AQABAAEAAAADAAAAAQABAAEAAAAEAP//AQABAAEAAAAEAAAAAQABAAEAAAAGAP//AQACAAEAAAAGAAAAAQACAAEAAAAGAP7/AQACAAEAAAABAAAAAQABAAEAAAD8//3/AQABAAAAAAD9//3/AQABAAAAAAD+//3/AQABAAAAAAD///3/AQABAAAAAAAAAP3/AQABAAAAAAABAP3/AQABAAAAAAACAP3/AQABAAAAAAADAP3/AQABAAAAAAAEAP3/AQABAAAAAAAFAP3/AQABAAAAAAAGAP3/AQACAAAAAAD7/wEAAQABAAEAAAD6/wEAAQABAAEAAAD6/wAAAQABAAEAAAD7/wAAAQABAAEAAAD7////AQABAAEAAAD7//7/AQABAAEAAAD6//7/AQABAAEAAAD6////AQABAAEAAAD4//3/AQABAAAAAAD5//3/AQABAAAAAAD6//3/AQABAAAAAAD7//3/AQABAAAAAAD5//7/AQABAAEAAAD5////AQABAAEAAAD5/wAAAQABAAEAAAD5/wEAAQABAAEAAAD4/wEAAQABAAEAAAD4/wAAAQABAAEAAAD4////AQABAAEAAAD4//7/AQABAAEAAAD3/wUAAQABAAIAAAAGAAUAAQACAAIAAAD4/wUAAQABAAIAAAD5/wUAAQABAAIAAAD6/wUAAQABAAIAAAD7/wUAAQABAAIAAAD8/wUAAQABAAIAAAD9/wUAAQABAAIAAAD+/wUAAQABAAIAAAD//wUAAQABAAIAAAAAAAUAAQABAAIAAAABAAUAAQABAAIAAAACAAUAAQABAAIAAAADAAUAAQABAAIAAAAEAAUAAQABAAIAAAAFAAUAAQABAAIAAAAGAAQAAQACAAEAAAAGAAMAAQACAAEAAAAGAAIAAQACAAEAAAD3/wQAAQABAAEAAAD3/wMAAQABAAEAAAD3/wIAAQABAAEAAAD3/wEAAQABAAEAAAD3/wAAAQABAAEAAAD3////AQABAAEAAAD3//7/AQABAAEAAAD3//3/AQABAAAAAAD7/wMAAQABAAEAAAD7/wIAAQABAAEAAAD6/wIAAQABAAEAAAD5/wIAAQABAAEAAAD4/wIAAQABAAEAAAD4/wMAAQABAAEAAAD4/wQAAQABAAEAAAD5/wQAAQABAAEAAAD5/wMAAQABAAEAAAD6/wMAAQABAAEAAAD6/wQAAQABAAEAAAD7/wQAAQABAAEAAAD8/wQAAQABAAEAAAD8/wMAAQABAAEAAAD8/wIAAQABAAEAAAD9/wIAAQABAAEAAAD9/wMAAQABAAEAAAD9/wQAAQABAAEAAAD+/wQAAQABAAEAAAD+/wMAAQABAAEAAAD+/wIAAQABAAEAAAD//wIAAQABAAEAAAD//wMAAQABAAEAAAD//wQAAQABAAEAAAAAAAQAAQABAAEAAAAAAAMAAQABAAEAAAAAAAIAAQABAAEAAAABAAIAAQABAAEAAAABAAMAAQABAAEAAAABAAQAAQABAAEAAAACAAQAAQABAAEAAAACAAMAAQABAAEAAAACAAIAAQABAAEAAAADAAIAAQABAAEAAAADAAMAAQABAAEAAAADAAQAAQABAAEAAAAEAAQAAQABAAEAAAAEAAMAAQABAAEAAAAEAAIAAQABAAEAAAAFAAIAAQABAAEAAAAFAAMAAQABAAEAAAAFAAQAAQABAAEAAAD1/wQAAQAAAAEAAAD1/wMAAQAAAAEAAAD1/wIAAQAAAAEAAAD1/wEAAQAAAAEAAAD1/wAAAQAAAAEAAAD1////AQAAAAEAAAD1//7/AQAAAAEAAAD1//3/AQAAAAAAAAD2//3/AQABAAAAAAD2/wUAAQABAAIAAAD1/wUAAQAAAAIAAAD2/wIAAQABAAEAAAD2/wEAAQABAAEAAAD2/wAAAQABAAEAAAD2////AQABAAEAAAD2//7/AQABAAEAAAD2/wMAAQABAAEAAAD2/wQAAQABAAEAAAA=")
+tile_set = SubResource("TileSet_dkxss")
+
+[node name="spawn_manager" parent="." unique_id=1697657517 node_paths=PackedStringArray("world_tiles") instance=ExtResource("13_oajyg")]
+Enemy = ExtResource("7_dcd45")
+world_tiles = NodePath("../CENARIO/grama")
+
+[node name="dialogue_ui" type="CanvasLayer" parent="." unique_id=1670234663]
+
+[node name="DialogueBox" type="HBoxContainer" parent="dialogue_ui" unique_id=1930550203 groups=["caixa_de_dialogo"]]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -92.5
+offset_top = -48.0
+offset_right = 92.5
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(92.5, 24)
+script = ExtResource("13_kk6m7")
+
+[node name="TextureRect" type="TextureRect" parent="dialogue_ui/DialogueBox" unique_id=449199970]
+layout_mode = 2
+texture = ExtResource("13_j630m")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialogue_ui/DialogueBox/TextureRect" unique_id=2095374272]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.051000003
+anchor_top = 0.14600001
+anchor_right = 0.873
+anchor_bottom = 0.771
+offset_left = 0.06499958
+offset_top = -0.008000374
+offset_right = -0.005004883
+offset_bottom = -0.008003235
+theme_override_font_sizes/normal_font_size = 5
