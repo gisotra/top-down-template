@@ -452,6 +452,12 @@ sources/1 = SubResource("TileSetAtlasSource_dkxss")
 sources/0 = SubResource("TileSetAtlasSource_0221t")
 sources/2 = SubResource("TileSetAtlasSource_r67kh")
 
+[sub_resource type="Environment" id="Environment_xm83q"]
+background_mode = 3
+tonemap_mode = 2
+glow_enabled = true
+glow_bloom = 0.05
+
 [node name="game" type="Node2D" unique_id=12126017]
 
 [node name="ui" type="CanvasLayer" parent="." unique_id=418543875]
@@ -586,3 +592,6 @@ offset_bottom = -0.008003235
 theme_override_font_sizes/normal_font_size = 5
 
 [node name="restart_game_canvas" parent="." unique_id=289433698 instance=ExtResource("17_xm83q")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1438293781]
+environment = SubResource("Environment_xm83q")
