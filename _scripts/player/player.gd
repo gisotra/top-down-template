@@ -70,6 +70,7 @@ func _physics_process(delta: float) -> void:
 				state_player.play("death")
 				
 				GameManager.player_morreu.emit()
+				GameManager.game_over.emit()
 
 	_handle_direction(direction)
 	_update_wrist_rotation()
