@@ -12,9 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://b0xgtlo18si1y" path="res://assets/objects/obstacles/tree.png" id="6_xvjbs"]
 [ext_resource type="PackedScene" uid="uid://kb83fchk3yqp" path="res://scenes/enemy.tscn" id="7_dcd45"]
 [ext_resource type="PackedScene" uid="uid://d34lky4l8cch2" path="res://scenes/entitites/byson_npc.tscn" id="8_18mce"]
+[ext_resource type="PackedScene" uid="uid://bqynnqblwt3an" path="res://scenes/objects/button.tscn" id="9_oajyg"]
 [ext_resource type="Texture2D" uid="uid://boqpmcrxfhmpo" path="res://assets/ui/dyalogue_bubble.png" id="13_j630m"]
 [ext_resource type="Script" uid="uid://cqtfbhfls6rcv" path="res://scenes/main_game/caixa_de_texto.gd" id="13_kk6m7"]
 [ext_resource type="PackedScene" uid="uid://dpyxedmciggl4" path="res://scenes/main_game/spawn_manager.tscn" id="13_oajyg"]
+[ext_resource type="Script" uid="uid://bax7tvet58qtc" path="res://_scripts/ui/restart_game_canvas.gd" id="17_bx34l"]
+[ext_resource type="Texture2D" uid="uid://be1n7m2v4fwev" path="res://assets/ui/restart.png" id="17_xm83q"]
+[ext_resource type="Texture2D" uid="uid://hf6yym201kq7" path="res://assets/ui/r_key.png" id="18_4p50t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rd7ru"]
 
@@ -456,7 +460,14 @@ shape = SubResource("CapsuleShape2D_u5vuv")
 
 [node name="byson_npc" parent="GameObjects" unique_id=1289247405 instance=ExtResource("8_18mce")]
 position = Vector2(-124, -15)
-texto_de_dialogo = "Olá viajante! É um ótimo dia para aprender a codar!z"
+texto_de_dialogo = "Aperte o botão para spawnar inimigos!
+"
+
+[node name="Enemy_pool" type="Node2D" parent="GameObjects" unique_id=1760885569]
+y_sort_enabled = true
+
+[node name="button" parent="GameObjects/Enemy_pool" unique_id=1969703652 instance=ExtResource("9_oajyg")]
+position = Vector2(-83, 48)
 
 [node name="CENARIO" type="Node2D" parent="." unique_id=1721209159]
 z_index = -1
@@ -465,9 +476,10 @@ z_index = -1
 tile_map_data = PackedByteArray("AAD8//7/AQABAAEAAAD9//7/AQABAAEAAAD+//7/AQABAAEAAAD///7/AQABAAEAAAAAAP7/AQABAAEAAAABAP7/AQABAAEAAAACAP7/AQABAAEAAAADAP7/AQABAAEAAAAEAP7/AQABAAEAAAAFAP7/AQABAAEAAAAFAP//AQABAAEAAAAFAAAAAQABAAEAAAAFAAEAAQABAAEAAAAGAAEAAQACAAEAAAAEAAEAAQABAAEAAAADAAEAAQABAAEAAAACAAEAAQABAAEAAAABAAEAAQABAAEAAAAAAAEAAQABAAEAAAD//wEAAQABAAEAAAD+/wEAAQABAAEAAAD9/wEAAQABAAEAAAD8/wEAAQABAAEAAAD8////AQABAAEAAAD8/wAAAQABAAEAAAD9////AQABAAEAAAD9/wAAAQABAAEAAAD+/wAAAQABAAEAAAD+////AQABAAEAAAD//wAAAQABAAEAAAD/////AQABAAEAAAAAAP//AQABAAEAAAAAAAAAAQABAAEAAAABAP//AQABAAEAAAACAAAAAQABAAEAAAACAP//AQABAAEAAAADAP//AQABAAEAAAADAAAAAQABAAEAAAAEAP//AQABAAEAAAAEAAAAAQABAAEAAAAGAP//AQACAAEAAAAGAAAAAQACAAEAAAAGAP7/AQACAAEAAAABAAAAAQABAAEAAAD8//3/AQABAAAAAAD9//3/AQABAAAAAAD+//3/AQABAAAAAAD///3/AQABAAAAAAAAAP3/AQABAAAAAAABAP3/AQABAAAAAAACAP3/AQABAAAAAAADAP3/AQABAAAAAAAEAP3/AQABAAAAAAAFAP3/AQABAAAAAAAGAP3/AQACAAAAAAD7/wEAAQABAAEAAAD6/wEAAQABAAEAAAD6/wAAAQABAAEAAAD7/wAAAQABAAEAAAD7////AQABAAEAAAD7//7/AQABAAEAAAD6//7/AQABAAEAAAD6////AQABAAEAAAD4//3/AQABAAAAAAD5//3/AQABAAAAAAD6//3/AQABAAAAAAD7//3/AQABAAAAAAD5//7/AQABAAEAAAD5////AQABAAEAAAD5/wAAAQABAAEAAAD5/wEAAQABAAEAAAD4/wEAAQABAAEAAAD4/wAAAQABAAEAAAD4////AQABAAEAAAD4//7/AQABAAEAAAD3/wUAAQABAAIAAAAGAAUAAQACAAIAAAD4/wUAAQABAAIAAAD5/wUAAQABAAIAAAD6/wUAAQABAAIAAAD7/wUAAQABAAIAAAD8/wUAAQABAAIAAAD9/wUAAQABAAIAAAD+/wUAAQABAAIAAAD//wUAAQABAAIAAAAAAAUAAQABAAIAAAABAAUAAQABAAIAAAACAAUAAQABAAIAAAADAAUAAQABAAIAAAAEAAUAAQABAAIAAAAFAAUAAQABAAIAAAAGAAQAAQACAAEAAAAGAAMAAQACAAEAAAAGAAIAAQACAAEAAAD3/wQAAQABAAEAAAD3/wMAAQABAAEAAAD3/wIAAQABAAEAAAD3/wEAAQABAAEAAAD3/wAAAQABAAEAAAD3////AQABAAEAAAD3//7/AQABAAEAAAD3//3/AQABAAAAAAD7/wMAAQABAAEAAAD7/wIAAQABAAEAAAD6/wIAAQABAAEAAAD5/wIAAQABAAEAAAD4/wIAAQABAAEAAAD4/wMAAQABAAEAAAD4/wQAAQABAAEAAAD5/wQAAQABAAEAAAD5/wMAAQABAAEAAAD6/wMAAQABAAEAAAD6/wQAAQABAAEAAAD7/wQAAQABAAEAAAD8/wQAAQABAAEAAAD8/wMAAQABAAEAAAD8/wIAAQABAAEAAAD9/wIAAQABAAEAAAD9/wMAAQABAAEAAAD9/wQAAQABAAEAAAD+/wQAAQABAAEAAAD+/wMAAQABAAEAAAD+/wIAAQABAAEAAAD//wIAAQABAAEAAAD//wMAAQABAAEAAAD//wQAAQABAAEAAAAAAAQAAQABAAEAAAAAAAMAAQABAAEAAAAAAAIAAQABAAEAAAABAAIAAQABAAEAAAABAAMAAQABAAEAAAABAAQAAQABAAEAAAACAAQAAQABAAEAAAACAAMAAQABAAEAAAACAAIAAQABAAEAAAADAAIAAQABAAEAAAADAAMAAQABAAEAAAADAAQAAQABAAEAAAAEAAQAAQABAAEAAAAEAAMAAQABAAEAAAAEAAIAAQABAAEAAAAFAAIAAQABAAEAAAAFAAMAAQABAAEAAAAFAAQAAQABAAEAAAD1/wQAAQAAAAEAAAD1/wMAAQAAAAEAAAD1/wIAAQAAAAEAAAD1/wEAAQAAAAEAAAD1/wAAAQAAAAEAAAD1////AQAAAAEAAAD1//7/AQAAAAEAAAD1//3/AQAAAAAAAAD2//3/AQABAAAAAAD2/wUAAQABAAIAAAD1/wUAAQAAAAIAAAD2/wIAAQABAAEAAAD2/wEAAQABAAEAAAD2/wAAAQABAAEAAAD2////AQABAAEAAAD2//7/AQABAAEAAAD2/wMAAQABAAEAAAD2/wQAAQABAAEAAAA=")
 tile_set = SubResource("TileSet_dkxss")
 
-[node name="spawn_manager" parent="." unique_id=1697657517 node_paths=PackedStringArray("world_tiles") instance=ExtResource("13_oajyg")]
+[node name="spawn_manager" parent="." unique_id=1697657517 node_paths=PackedStringArray("world_tiles", "enemy_pool") instance=ExtResource("13_oajyg")]
 Enemy = ExtResource("7_dcd45")
 world_tiles = NodePath("../CENARIO/grama")
+enemy_pool = NodePath("../GameObjects/Enemy_pool")
 
 [node name="dialogue_ui" type="CanvasLayer" parent="." unique_id=1670234663]
 
@@ -502,3 +514,28 @@ offset_top = -0.008000374
 offset_right = -0.005004883
 offset_bottom = -0.008003235
 theme_override_font_sizes/normal_font_size = 5
+
+[node name="restart_game_canvas" type="CanvasLayer" parent="." unique_id=1630397129]
+visible = false
+script = ExtResource("17_bx34l")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="restart_game_canvas" unique_id=62330008]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="restart" type="TextureRect" parent="restart_game_canvas/HBoxContainer" unique_id=266793808]
+layout_mode = 2
+texture = ExtResource("17_xm83q")
+
+[node name="key" type="Sprite2D" parent="restart_game_canvas/HBoxContainer" unique_id=271267527]
+position = Vector2(32, -11)
+texture = ExtResource("18_4p50t")

@@ -8,14 +8,17 @@ class_name Enemy
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var sprite: Sprite2D = $enemy_sprite
 
+var stopMoving :bool = false
 var isDead :bool = false
 var player_ref : Node2D 
 
 func _ready() -> void:
+	stopMoving = false
 	player_ref = get_tree().get_first_node_in_group("playergroup")
+	GameManager.player_morreu.connect(_parar_de_se_mover)
 
 func _physics_process(delta: float) -> void:
-	if isDead: return
+	if isDead or stopMoving: return
 	var dir = to_local(navigation_agent_2d.get_next_path_position()).normalized()
 	if dir > Vector2.ZERO: 
 		sprite.flip_h = true
@@ -43,4 +46,7 @@ func _on_health_component_on_die() -> void:
 	ap.play("dead")
 
 func _on_health_component_on_take_damage(current_health_value: float) -> void:
-	_hurt() # Replace with function body.
+	_hurt() 
+	
+func _parar_de_se_mover():
+	stopMoving = true

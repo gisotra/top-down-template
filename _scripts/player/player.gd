@@ -21,6 +21,7 @@ var lastDirection: Vector2 = Vector2.DOWN
 var isMoving: bool = false
 var isAttacking: bool = false
 var isHurt: bool = false
+var isDead: bool = false
 
 # vida
 var totalHealth: int
@@ -31,6 +32,7 @@ func _ready() -> void:
 
 # =================== função chamada a cada frame do jogo ===================
 func _physics_process(delta: float) -> void:
+	if isDead: return
 	if !invincibility.is_stopped():
 		player_sprite.modulate = Color(1.0, 1.0, 1.0, 0.75)
 	else:
@@ -62,14 +64,18 @@ func _physics_process(delta: float) -> void:
 				#player_sprite.play("dead")
 				print("a tal da morte")
 				totalHealth = 0
+				isDead = true
 				vida_mudou.emit(totalHealth)
+				player_sprite.play("dead")
 				state_player.play("death")
+				
+				GameManager.player_morreu.emit()
 
 	_handle_direction(direction)
 	_update_wrist_rotation()
 
 func _handle_direction(direction: Vector2):
-	if isHurt: return
+	if isHurt or isDead: return
 	if direction == Vector2.ZERO:
 		# Checamos a "memória" para saber qual idle tocar
 		if lastDirection.x != 0: 

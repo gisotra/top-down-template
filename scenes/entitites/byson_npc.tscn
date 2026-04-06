@@ -24,8 +24,10 @@ position = Vector2(0, 5)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_18mce")
 
-[node name="InteractionArea" type="Area2D" parent="." unique_id=883460583]
+[node name="InteractionArea" type="Area2D" parent="." unique_id=883460583 node_paths=PackedStringArray("button", "speech_bubble")]
 script = ExtResource("2_y35fn")
+button = NodePath("hoverButton")
+speech_bubble = NodePath("../SpeechBubble")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=917830469]
 position = Vector2(0, -6)

@@ -87,3 +87,4 @@ frame_progress = 0.9259524
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=591096275]
 libraries/ = SubResource("AnimationLibrary_m6r1u")
+autoplay = &"spawn"

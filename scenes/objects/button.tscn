@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bqynnqblwt3an"]
+
+[ext_resource type="Script" uid="uid://dqedbo4w67ipv" path="res://_scripts/npcs/button.gd" id="1_bejyh"]
+[ext_resource type="Texture2D" uid="uid://cprqxpcxbvjtu" path="res://assets/objects/obstacles/button.png" id="1_ufqlp"]
+[ext_resource type="Script" uid="uid://btn1i4h8wmdkx" path="res://_scripts/core_mechanics/interaction_area.gd" id="2_2wxwk"]
+[ext_resource type="Texture2D" uid="uid://dw202hb0o4fk8" path="res://assets/ui/press_]key.png" id="3_e5cij"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2wxwk"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e5cij"]
+radius = 23.194826
+
+[node name="button" type="StaticBody2D" unique_id=1969703652]
+script = ExtResource("1_bejyh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1237141950]
+position = Vector2(0, -12)
+texture = ExtResource("1_ufqlp")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1905240589]
+position = Vector2(0, -6)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_2wxwk")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=1321546265 node_paths=PackedStringArray("button")]
+script = ExtResource("2_2wxwk")
+button = NodePath("hoverButton")
+metadata/_custom_type_script = "uid://btn1i4h8wmdkx"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1956929296]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_e5cij")
+debug_color = Color(0.9372549, 0, 0.62352943, 0)
+
+[node name="hoverButton" type="Sprite2D" parent="InteractionArea" unique_id=498838876]
+position = Vector2(0, -33)
+texture = ExtResource("3_e5cij")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

@@ -1,18 +1,21 @@
 extends Area2D
 class_name InteractionArea
-@onready var button: Sprite2D = $hoverButton
-@onready var speech_bubble: Sprite2D = $"../SpeechBubble"
+@export var button: Sprite2D
+@export var speech_bubble: Sprite2D 
 @onready var camera : GameCamera = get_tree().get_first_node_in_group("camera")
 
 var  interactableBody : Node2D = null
 	
 func _ready() -> void:
+	if button == null: return
 	button.scale = Vector2.ZERO
 
 func _process(delta: float) -> void:
 		if interactableBody != null and Input.is_action_just_pressed("interact"):
-			if owner.has_method("falar"): # no caso, o Bisão
+			if owner.has_method("falar"): # no caso, um npc
 				owner.falar()
+			elif owner.has_method("iniciarPartida"):
+				owner.iniciarPartida()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("_interact"):
